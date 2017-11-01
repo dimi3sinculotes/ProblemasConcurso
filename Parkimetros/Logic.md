@@ -1,4 +1,4 @@
-# This is the logic behind the code:
+# This is the logic behind the problem:
 
 So, you have N different coins, and the machine can handle only M coins, and you need to tell how many different prices can
 the mayor set on the machines.
