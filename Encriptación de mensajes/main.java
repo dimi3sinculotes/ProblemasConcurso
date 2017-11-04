@@ -29,27 +29,28 @@ public class main{
 
         for (int i = 0; i < s.length(); i++){
             c = s.charAt(i);
-            if((c <= 'z') && (c >= 'a')){
-                if (((char)(s.charAt(i) + code) <= 'z') && ((char)(s.charAt(i) +  code) >= 'a')){
-                    decoded += (char)(s.charAt(i) + code);
-                }else if((char)(s.charAt(i) + code) <= 'z'){
-                    buff = (s.charAt(i) - 'a') - 1;
-                    decoded += (char)('z' + (buff + code));
-                }else{
-                    buff = ('z' - s.charAt(i)) - 1;
-                    decoded += (char)('a' + (buff + code));
+            if (Character.isLetter(c)) {
+                if ((c <= 'z') && (c >= 'a')) {
+                    if (((char) (s.charAt(i) + code) <= 'z') && ((char) (s.charAt(i) + code) >= 'a')) {
+                        decoded += (char) (s.charAt(i) + code);
+                    } else if ((char) (s.charAt(i) + code) <= 'z') {
+                        buff = (s.charAt(i) - 'a') - 1;
+                        decoded += (char) ('z' + (buff + code));
+                    } else {
+                        buff = ('z' - s.charAt(i)) - 1;
+                        decoded += (char) ('a' + (buff + code));
+                    }
+                } else if ((c <= 'Z') && (c >= 'A')) {
+                    if (((char) (s.charAt(i) + code) <= 'Z') && ((char) (s.charAt(i) + code) >= 'A')) {
+                        decoded += (char) (s.charAt(i) + code);
+                    } else if ((char) (s.charAt(i) + code) <= 'Z') {
+                        buff = (s.charAt(i) - 'A') - 1;
+                        decoded += (char) ('Z' + (buff + code));
+                    } else {
+                        buff = ('Z' - s.charAt(i)) - 1;
+                        decoded += (char) ('A' + (buff + code));
+                    }
                 }
-            }else if ((c <= 'Z') && (c >= 'A')){
-                if (((char)(s.charAt(i) + code) <= 'Z') && ((char)(s.charAt(i) +  code) >= 'A')){
-                    decoded += (char)(s.charAt(i) + code);
-                }else if((char)(s.charAt(i) + code) <= 'Z'){
-                    buff = (s.charAt(i) - 'A') - 1;
-                    decoded += (char)('Z' + (buff + code));
-                }else{
-                    buff = ('Z' - s.charAt(i)) - 1;
-                    decoded += (char)('A' + (buff + code));
-                }
-
             }
         }
 
@@ -63,7 +64,7 @@ public class main{
         char[] cs = s.toCharArray();
 
         for (char cp: cs){
-            if (isVowel(cp)){
+            if (main.isVowel(cp)){
                 howMany++;
             }
         }
@@ -73,6 +74,7 @@ public class main{
     // This method returns the code for the Cesar encryption algorithm
     private static int code(String s){
         char c = s.charAt(0);
+        Character.toLowerCase(c);
         return JOKER - c;
     }
 
