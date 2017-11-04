@@ -1,4 +1,4 @@
-class main{
+public class main{
 
     static final char JOKER = 'p';
     static final char[] VOWELS = {'a','e','i','o','u'};
