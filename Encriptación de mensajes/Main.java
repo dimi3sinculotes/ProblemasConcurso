@@ -1,16 +1,21 @@
-public class main{
+// If you want to use System.in uncoment the Scanner code, otherwise this will be using argument args[]
+// import java.util.Scanner;
+
+public class Main{
 
     static final char JOKER = 'p';
     static final char[] VOWELS = {'a','e','i','o','u'};
 
     public static void main (String[] args){
+        // Scanner s = new Scanner(System.in);
         String end = "pFIN";
         boolean stop = false;
         String buffer;
         int i = 0;
-
+        
         do{
-            buffer = decoded(args[i]);
+            // buffer = decoded(s.nextLine());
+            buffer = args[i];
             if (!buffer.equals(end)) {
                 System.out.println(vowels(buffer));
                 i++;
@@ -24,31 +29,28 @@ public class main{
     private static String decoded(String s){
         int code = code(s);
         int buff;
-        char c;
+        char c, z, a;
         String decoded = "";
 
-        for (int i = 0; i < s.length(); i++){
+        for (int i = 0; i < s.length(); i++) {
             c = s.charAt(i);
             if (Character.isLetter(c)) {
-                if ((c <= 'z') && (c >= 'a')) {
-                    if (((char) (s.charAt(i) + code) <= 'z') && ((char) (s.charAt(i) + code) >= 'a')) {
-                        decoded += (char) (s.charAt(i) + code);
-                    } else if ((char) (s.charAt(i) + code) <= 'z') {
-                        buff = (s.charAt(i) - 'a') - 1;
-                        decoded += (char) ('z' + (buff + code));
-                    } else {
-                        buff = ('z' - s.charAt(i)) - 1;
-                        decoded += (char) ('a' + (buff + code));
+                if (((c <= 'z') && (c >= 'a')) || ((c <= 'Z') && (c >= 'A'))) {
+                    if ((c <= 'z') && (c >= 'a')) {
+                        z = 'z';
+                        a = 'a';
+                    } else{
+                        z = 'Z';
+                        a = 'A';
                     }
-                } else if ((c <= 'Z') && (c >= 'A')) {
-                    if (((char) (s.charAt(i) + code) <= 'Z') && ((char) (s.charAt(i) + code) >= 'A')) {
+                    if (((char) (s.charAt(i) + code) <= z) && ((char) (s.charAt(i) + code) >= a)) {
                         decoded += (char) (s.charAt(i) + code);
-                    } else if ((char) (s.charAt(i) + code) <= 'Z') {
-                        buff = (s.charAt(i) - 'A') - 1;
-                        decoded += (char) ('Z' + (buff + code));
+                    } else if ((char) (s.charAt(i) + code) <= z) {
+                        buff = (s.charAt(i) - a) + 1;
+                        decoded += (char) (z + (code + buff));
                     } else {
-                        buff = ('Z' - s.charAt(i)) - 1;
-                        decoded += (char) ('A' + (buff + code));
+                        buff = (z - s.charAt(i)) + 1;
+                        decoded += (char) (a + (code - buff));
                     }
                 }
             }
@@ -64,7 +66,7 @@ public class main{
         char[] cs = s.toCharArray();
 
         for (char cp: cs){
-            if (main.isVowel(cp)){
+            if (Main.isVowel(cp)){
                 howMany++;
             }
         }
